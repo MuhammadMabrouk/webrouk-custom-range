@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Webrouk Custom Range Component</title>
+  <style>
+    body {
+      background-color: hsl(225, 6%, 22%);
+      padding: 50px;
+    }
+
+    webrouk-custom-range {
+      /* Expected variables from inside the component (optional) */
+      --primary-color: hsl(218, 95%, 54%);
+      --text-color: hsl(0, 100%, 100%);
+      --line-color: hsl(0, 0%, 93%);
+    }
+  </style>
+</head>
+
+<body>
+  <webrouk-custom-range start="0" end="1000" from="300" to="700" prefix-char="$">
+    <!-- This input will receive the value from the component (required) -->
+    <input type="hidden">
+  </webrouk-custom-range>
+
+  <!-- webrouk-custom-range component file -->
+  <script src="webrouk-custom-range.js"></script>
+
+  <script>
+    const input = document.querySelector("input");
+    input.addEventListener("change", (e) => console.log(e.target.value));
+  </script>
+</body>
+</html>
