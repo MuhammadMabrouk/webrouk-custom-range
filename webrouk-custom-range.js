@@ -178,33 +178,6 @@ class WebroukCustomRange extends HTMLElement {
   }
 
   connectedCallback() {
-    this._initRangeSlider();
-
-    this._lower.addEventListener("mousedown", this._onGrabbingLowerHandle.bind(this));
-    this._lower.addEventListener("touchstart", this._onGrabbingLowerHandle.bind(this));
-    this._upper.addEventListener("mousedown", this._onGrabbingUpperHandle.bind(this));
-    this._upper.addEventListener("touchstart", this._onGrabbingUpperHandle.bind(this));
-
-    document.addEventListener("mouseup", this._onReleasingHandle.bind(this));
-    document.addEventListener("touchend", this._onReleasingHandle.bind(this));
-
-    document.addEventListener("mousemove", this._onMovingHandle.bind(this));
-    document.addEventListener("touchmove", this._onMovingHandle.bind(this), { passive: false });
-  }
-
-  disconnectedCallback() {
-    this._lower.removeEventListener("mousedown", this._onGrabbingLowerHandle);
-    this._lower.removeEventListener("touchstart", this._onGrabbingLowerHandle);
-    this._upper.removeEventListener("mousedown", this._onGrabbingUpperHandle);
-    this._upper.removeEventListener("touchstart", this._onGrabbingUpperHandle);
-
-    document.removeEventListener("mouseup", this._onReleasingHandle);
-    document.removeEventListener("touchend", this._onReleasingHandle);
-    document.removeEventListener("mousemove", this._onMovingHandle);
-    document.removeEventListener("touchmove", this._onMovingHandle);
-  }
-
-  _initRangeSlider() {
     this._prefixChar          = this.getAttribute("prefix-char") || "";
     this._suffixChar          = this.getAttribute("suffix-char") || "";
     this._startVal            = this.getAttribute("start") || 0;
@@ -231,6 +204,36 @@ class WebroukCustomRange extends HTMLElement {
     this._to.innerText        = this._singleTo.innerText = this._numWithCommas(`${this._prefixChar}${this._toVal}${this._suffixChar}`);
     this._input.value         = `${this._fromVal},${this._toVal}`;
 
+    this._initRangeSlider();
+
+    this._lower.addEventListener("mousedown", this._onGrabbingLowerHandle.bind(this));
+    this._lower.addEventListener("touchstart", this._onGrabbingLowerHandle.bind(this));
+    this._upper.addEventListener("mousedown", this._onGrabbingUpperHandle.bind(this));
+    this._upper.addEventListener("touchstart", this._onGrabbingUpperHandle.bind(this));
+
+    document.addEventListener("mouseup", this._onReleasingHandle.bind(this));
+    document.addEventListener("touchend", this._onReleasingHandle.bind(this));
+
+    document.addEventListener("mousemove", this._onMovingHandle.bind(this));
+    document.addEventListener("touchmove", this._onMovingHandle.bind(this));
+
+    window.addEventListener("resize", this._initRangeSlider.bind(this));
+  }
+
+  disconnectedCallback() {
+    this._lower.removeEventListener("mousedown", this._onGrabbingLowerHandle);
+    this._lower.removeEventListener("touchstart", this._onGrabbingLowerHandle);
+    this._upper.removeEventListener("mousedown", this._onGrabbingUpperHandle);
+    this._upper.removeEventListener("touchstart", this._onGrabbingUpperHandle);
+
+    document.removeEventListener("mouseup", this._onReleasingHandle);
+    document.removeEventListener("touchend", this._onReleasingHandle);
+    document.removeEventListener("mousemove", this._onMovingHandle);
+    document.removeEventListener("touchmove", this._onMovingHandle);
+    window.removeEventListener("resize", this._initRangeSlider);
+  }
+
+  _initRangeSlider() {
     this._lower.style.left    = this._connect.style.left = `${(this._fromVal / this._endVal) * this._line.getBoundingClientRect().width}px` || 0;
     this._upper.style.left    = `${(this._toVal / this._endVal) * this._line.getBoundingClientRect().width}px` || "100%";
     this._connect.style.width = this._upper.getBoundingClientRect().x - this._lower.getBoundingClientRect().x + "px";
@@ -263,8 +266,6 @@ class WebroukCustomRange extends HTMLElement {
   }
 
   _onMovingHandle(e) {
-    e.preventDefault();
-
     const sliderWidth = this._line.getBoundingClientRect().width;
 
     if (this._isLowerDown) {
