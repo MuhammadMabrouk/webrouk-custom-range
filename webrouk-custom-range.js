@@ -237,6 +237,8 @@ class WebroukCustomRange extends HTMLElement {
     this._lower.style.left    = this._connect.style.left = `${(this._fromVal / this._endVal) * this._line.getBoundingClientRect().width}px` || 0;
     this._upper.style.left    = `${(this._toVal / this._endVal) * this._line.getBoundingClientRect().width}px` || "100%";
     this._connect.style.width = this._upper.getBoundingClientRect().x - this._lower.getBoundingClientRect().x + "px";
+
+    this._updateRangeSliderStatus();
   }
 
   _onGrabbingLowerHandle(e) {
@@ -297,23 +299,27 @@ class WebroukCustomRange extends HTMLElement {
     if (this._isLowerDown || this._isUpperDown) {
       this._input.value = `${this._fromVal},${this._toVal}`;
 
-      if (this._to.getBoundingClientRect().x <= this._from.getBoundingClientRect().x + this._from.getBoundingClientRect().width) {
-        this._rangeSlider.classList.add("webroukRange--showSingle");
-      } else {
-        this._rangeSlider.classList.remove("webroukRange--showSingle");
-      }
+      this._updateRangeSliderStatus();
+    }
+  }
 
-      if (this._from.getBoundingClientRect().x <= this._start.getBoundingClientRect().x + this._start.getBoundingClientRect().width) {
-        this._rangeSlider.classList.add("webroukRange--hideStart");
-      } else {
-        this._rangeSlider.classList.remove("webroukRange--hideStart");
-      }
+  _updateRangeSliderStatus() {
+    if (this._to.getBoundingClientRect().x <= this._from.getBoundingClientRect().x + this._from.getBoundingClientRect().width) {
+      this._rangeSlider.classList.add("webroukRange--showSingle");
+    } else {
+      this._rangeSlider.classList.remove("webroukRange--showSingle");
+    }
 
-      if (this._to.getBoundingClientRect().x + this._to.getBoundingClientRect().width >= this._end.getBoundingClientRect().x) {
-        this._rangeSlider.classList.add("webroukRange--hideEnd");
-      } else {
-        this._rangeSlider.classList.remove("webroukRange--hideEnd");
-      }
+    if (this._from.getBoundingClientRect().x <= this._start.getBoundingClientRect().x + this._start.getBoundingClientRect().width) {
+      this._rangeSlider.classList.add("webroukRange--hideStart");
+    } else {
+      this._rangeSlider.classList.remove("webroukRange--hideStart");
+    }
+
+    if (this._to.getBoundingClientRect().x + this._to.getBoundingClientRect().width >= this._end.getBoundingClientRect().x) {
+      this._rangeSlider.classList.add("webroukRange--hideEnd");
+    } else {
+      this._rangeSlider.classList.remove("webroukRange--hideEnd");
     }
   }
 }
