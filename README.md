@@ -55,9 +55,9 @@ Expected CSS Variables from inside the component (optional).
 
 ```css
 webrouk-custom-range {
-  --primary-color: hsl(218, 95%, 54%);
-  --text-color: hsl(0, 100%, 100%);
-  --line-color: hsl(0, 0%, 93%);
+  --w-primary-color: hsl(218, 95%, 54%);
+  --w-text-color: hsl(0, 100%, 100%);
+  --w-line-color: hsl(0, 0%, 93%);
 }
 ```
 

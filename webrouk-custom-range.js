@@ -2,12 +2,12 @@ const webroukCustomRangeTemplate = document.createElement("template");
 webroukCustomRangeTemplate.innerHTML = `
   <style>
     :host {
-      --primary-color-fb: hsl(214, 100%, 49%);
-      --text-color-fb: hsl(0, 100%, 100%);
-      --line-color-fb: hsl(0, 100%, 100%);
-      --handle-size: 24px;
-      --triangle-width: 8px;
-      --radius-size: 4px;
+      --w-primary-color-fb: hsl(214, 100%, 49%);
+      --w-text-color-fb: hsl(0, 100%, 100%);
+      --w-line-color-fb: hsl(0, 100%, 100%);
+      --w-handle-size: 24px;
+      --w-triangle-width: 8px;
+      --w-radius-size: 4px;
     }
     :host * {
       -webkit-box-sizing: border-box;
@@ -15,21 +15,21 @@ webroukCustomRangeTemplate.innerHTML = `
     }
     .webroukRange {
       position: relative;
-      height: var(--handle-size);
-      padding: calc(var(--handle-size) * 2) 0 calc(var(--handle-size) / 2);
+      height: var(--w-handle-size);
+      padding: calc(var(--w-handle-size) * 2) 0 calc(var(--w-handle-size) / 2);
     }
     .webroukRange__line {
       position: relative;
-      height: calc(var(--handle-size) / 4);
-      margin-top: calc(var(--handle-size) / -8);
-      background-color: var(--line-color, var(--line-color-fb));
-      border-radius: var(--radius-size);
+      height: calc(var(--w-handle-size) / 4);
+      margin-top: calc(var(--w-handle-size) / -8);
+      background-color: var(--w-line-color, var(--w-line-color-fb));
+      border-radius: var(--w-radius-size);
     }
     .webroukRange__line__connect {
       position: absolute;
       top: 0;
       height: 100%;
-      background-color: var(--primary-color, var(--primary-color-fb));
+      background-color: var(--w-primary-color, var(--w-primary-color-fb));
     }
     .webroukRange__iniVal,
     .webroukRange__handle__curVal,
@@ -38,12 +38,12 @@ webroukCustomRangeTemplate.innerHTML = `
       -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
       transform: translateX(-50%);
-      background-color: var(--primary-color, var(--primary-color-fb));
-      color: var(--text-color, var(--text-color-fb));
+      background-color: var(--w-primary-color, var(--w-primary-color-fb));
+      color: var(--w-text-color, var(--w-text-color-fb));
       font-size: 0.875rem;
       white-space: nowrap;
       padding: 3px 5px;
-      border-radius: var(--radius-size);
+      border-radius: var(--w-radius-size);
     }
     .webroukRange__iniVal::after,
     .webroukRange__handle__curVal::after,
@@ -55,8 +55,8 @@ webroukCustomRangeTemplate.innerHTML = `
       -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
       transform: translateX(-50%);
-      height: calc(var(--triangle-width) * 0.8);
-      width: calc(var(--triangle-width) * 1.5);
+      height: calc(var(--w-triangle-width) * 0.8);
+      width: calc(var(--w-triangle-width) * 1.5);
       background-color: inherit;
       -webkit-clip-path: polygon(50% 100%, 0 0, 100% 0);
       clip-path: polygon(50% 100%, 0 0, 100% 0);
@@ -72,14 +72,14 @@ webroukCustomRangeTemplate.innerHTML = `
     }
     .webroukRange__handle {
       position: absolute;
-      top: calc((var(--handle-size) - (var(--handle-size) / 4)) / -2);
+      top: calc((var(--w-handle-size) - (var(--w-handle-size) / 4)) / -2);
       -webkit-transform: translateX(-50%);
       -ms-transform: translateX(-50%);
       transform: translateX(-50%);
-      height: var(--handle-size);
-      width: var(--handle-size);
-      background-color: var(--line-color, var(--line-color-fb));
-      border: calc(var(--handle-size) / 6) solid var(--primary-color, var(--primary-color-fb));
+      height: var(--w-handle-size);
+      width: var(--w-handle-size);
+      background-color: var(--w-line-color, var(--w-line-color-fb));
+      border: calc(var(--w-handle-size) / 6) solid var(--w-primary-color, var(--w-primary-color-fb));
       border-radius: 50%;
       -webkit-box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
       box-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
@@ -87,7 +87,7 @@ webroukCustomRangeTemplate.innerHTML = `
       cursor: grab;
     }
     .webroukRange__handle__curVal {
-      top: calc((var(--handle-size) * -2) + ((var(--handle-size) / 6) * 2));
+      top: calc((var(--w-handle-size) * -2) + ((var(--w-handle-size) / 6) * 2));
       left: 50%;
     }
     .webroukRange__handle:focus {
@@ -98,7 +98,7 @@ webroukCustomRangeTemplate.innerHTML = `
       cursor: grabbing;
     }
     .webroukRange__singleVal {
-      top: calc((var(--handle-size) * -2) + (var(--handle-size) / 8));
+      top: calc((var(--w-handle-size) * -2) + (var(--w-handle-size) / 8));
       left: 50%;
       white-space: nowrap;
     }
