@@ -5,9 +5,9 @@ webroukCustomRangeTemplate.innerHTML = `
       --w-primary-color-fb: hsl(214, 100%, 49%);
       --w-text-color-fb: hsl(0, 100%, 100%);
       --w-line-color-fb: hsl(0, 100%, 100%);
-      --w-handle-size: 24px;
-      --w-triangle-width: 8px;
-      --w-radius-size: 4px;
+      --w-handle-size: 1.5rem;
+      --w-triangle-width: 0.5rem;
+      --w-radius-size: 0.25rem;
     }
     :host * {
       -webkit-box-sizing: border-box;
@@ -116,24 +116,24 @@ webroukCustomRangeTemplate.innerHTML = `
     }
   </style>
 
-  <div class="webroukRange">
-    <span class="webroukRange__iniVal webroukRange__iniVal--start"></span>
-    <span class="webroukRange__iniVal webroukRange__iniVal--end"></span>
+  <div class="webroukRange" part="root">
+    <span class="webroukRange__iniVal webroukRange__iniVal--start" part="value-start"></span>
+    <span class="webroukRange__iniVal webroukRange__iniVal--end" part="value-end"></span>
 
     <div class="webroukRange__line">
       <div class="webroukRange__line__connect">
-        <div class="webroukRange__singleVal">
+        <div class="webroukRange__singleVal" part="value-single">
           <span class="webroukRange__singleVal__from"></span>
           -
           <span class="webroukRange__singleVal__to"></span>
         </div>
       </div>
 
-      <div class="webroukRange__handle webroukRange__handle--lower" tabindex="0">
-        <span class="webroukRange__handle__curVal webroukRange__handle__curVal--from"></span>
+      <div class="webroukRange__handle webroukRange__handle--lower" tabindex="0" part="handle handle-lower">
+        <span class="webroukRange__handle__curVal webroukRange__handle__curVal--from" part="value-from"></span>
       </div>
-      <div class="webroukRange__handle webroukRange__handle--upper" tabindex="0">
-        <span class="webroukRange__handle__curVal webroukRange__handle__curVal--to"></span>
+      <div class="webroukRange__handle webroukRange__handle--upper" tabindex="0" part="handle handle-upper">
+        <span class="webroukRange__handle__curVal webroukRange__handle__curVal--to" part="value-to"></span>
       </div>
     </div>
 

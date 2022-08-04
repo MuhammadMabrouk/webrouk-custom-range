@@ -61,6 +61,39 @@ webrouk-custom-range {
 }
 ```
 
+### Styleable Component Parts
+---
+- root
+- value-start
+- value-end
+- value-from
+- value-to
+- value-single
+- handle
+- handle-lower
+- handle-upper
+
+#### Example:
+
+```css
+webrouk-custom-range::part(value-start) {
+  background-color: cornflowerblue;
+}
+
+webrouk-custom-range::part(value-end) {
+  background-color: indianred;
+}
+
+webrouk-custom-range::part(value-from),
+webrouk-custom-range::part(value-to) {
+  background-color: blueviolet;
+}
+
+webrouk-custom-range::part(value-single) {
+  background-color: seagreen;
+}
+```
+
 ### License
 -------
 webroukCustomRange is licensed [MIT](https://choosealicense.com/licenses/mit/).
